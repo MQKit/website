@@ -9,16 +9,18 @@ export const REPO = "https://github.com/MQKit/app";
 
 export const LATEST_VERSION = "1.0.0";
 /** Release date of LATEST_VERSION (yyyy-mm-dd). */
-export const LATEST_DATE = "2026-12-01";
+export const LATEST_DATE = "2026-11-18";
 export const INSTALLER_NAME = `MQKit-setup-${LATEST_VERSION}.exe`;
 // by tag: the link names the exact file the SHA-256 is for
 export const DOWNLOAD = `${REPO}/releases/download/v${LATEST_VERSION}/${INSTALLER_NAME}`;
 /** From scripts\package.ps1 -Release; empty until the first release. */
-export const INSTALLER_SHA256 = "";
-export const INSTALLER_SIZE = "6 MB";
+export const INSTALLER_SHA256 = "ca42c5c50f138bf76e60bad823c47b6f1ace1bf7acb6cca0faca911c6f49705f";
+export const INSTALLER_SIZE = "14 MB";
 /** Until the first release, the download buttons say "coming soon". */
 export const DOWNLOAD_READY = INSTALLER_SHA256 !== "";
 export const WINGET_ID = "SoftwareHive.MQKit";
+/** Shown on the download page once Microsoft has accepted the package into winget. */
+export const WINGET_READY = false;
 
 export const COMPANY = {
   name: "SOFTWARE HIVE S.R.L.",

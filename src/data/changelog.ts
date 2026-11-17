@@ -13,7 +13,7 @@ export interface Release {
 export const RELEASES: Release[] = [
   {
     version: "1.0.0",
-    date: "2026-12-01",
+    date: "2026-11-18",
     summary: {
       en: "The first version: 44 tools for PDF, images, video, audio, documents and more.",
       ro: "Prima versiune: 44 de unelte pentru PDF, imagini, video, audio, documente și altele.",

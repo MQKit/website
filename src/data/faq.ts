@@ -3,7 +3,7 @@ export const FAQ_GROUPS: { title: string; items: [string, string][] }[] = [
   {
     title: "The basics",
     items: [
-      ["Is it really free?", "Yes, forever. There's no paid version, no trial, no watermark, no limit on files or pages, and no account. The app shows no ads."],
+      ["Is it really free?", "Yes. There's no paid version, no trial, no watermark, no limit on files or pages, and no account. The app shows no ads."],
       ["Are my files uploaded anywhere?", "No. Every conversion runs on your computer. The app doesn't even need the internet, apart from downloading a few large programs once, the first time a tool needs them, and only when you click to allow it."],
       ["Does it run on Mac or Linux?", "No, only on Windows 10 and 11, 64-bit."],
       ["My antivirus complains. Is it safe?", "The installer and every program in it are digitally signed by Software Hive S.R.L. You can check the file against the SHA-256 on the download page, and the source code is public."],
@@ -23,7 +23,7 @@ export const FAQ_GROUPS: { title: string; items: [string, string][] }[] = [
     title: "Updates",
     items: [
       ["Why doesn't the app update itself?", "So that nothing changes on your PC without you. There is no updater running in the background, nothing installs while you work, and a version that works well for you stays exactly as it is. Once a day the app checks whether a new version is out and shows a short note. Whether and when to install it is up to you."],
-      ["Why does the update note send me to this website?", "Because this is where each version is published: the signed installer, its SHA-256 checksum and what changed, so you can read before you install. It's also how the app stays free. This website may show ads in the future; the app never will."],
+      ["Why does the update note send me to this website?", "Because this is where each version is published: the signed installer, its SHA-256 checksum and what changed, so you can read before you install."],
     ],
   },
 ];

@@ -4,7 +4,7 @@ import PageHead from "../components/PageHead.astro";
 import DownloadButton from "../components/DownloadButton.astro";
 import Shot from "../components/Shot.astro";
 import { RELEASES } from "../data/changelog";
-import { DOWNLOAD_READY, APP_NAME, INSTALLER_NAME, INSTALLER_SHA256, INSTALLER_SIZE, LATEST_VERSION, LATEST_DATE, WINGET_ID } from "../site";
+import { DOWNLOAD_READY, APP_NAME, INSTALLER_NAME, INSTALLER_SHA256, INSTALLER_SIZE, LATEST_VERSION, LATEST_DATE, WINGET_ID, WINGET_READY } from "../site";
 ---
 <Base title="Download" description={`Download ${APP_NAME} for Windows 10 and 11. Free, no account, works offline.`}>
   <PageHead title={`Download ${APP_NAME}`} lead="Free, no account, no ads in the app. It installs in seconds, for your user only.">
@@ -36,15 +36,15 @@ import { DOWNLOAD_READY, APP_NAME, INSTALLER_NAME, INSTALLER_SHA256, INSTALLER_S
       <p class="muted">{RELEASES[0].summary.en}</p>
       <ul class="notes-list">{RELEASES[0].items.en.map((i) => <li>{i}</li>)}</ul>
 
-      <h2>With winget</h2>
-      <pre><code>winget install {WINGET_ID}</code></pre>
+      {WINGET_READY && <h2>With winget</h2>}
+      {WINGET_READY && <pre><code>winget install {WINGET_ID}</code></pre>}
     </div>
 
     <div>
       <h2>Good to know</h2>
       <dl class="facts notes">
         <div><dt>Where it goes</dt><dd><code class="code-inline">%LOCALAPPDATA%\MQKit</code>, for your user. System files are not touched.</dd></div>
-        <div><dt>Explorer menu</dt><dd>A MQKit submenu when you right-click files (on Windows 11, under Show more options). It can be turned off in Settings.</dd></div>
+        <div><dt>Explorer menu</dt><dd>An MQKit submenu when you right-click files (on Windows 11, under Show more options). It can be turned off in Settings.</dd></div>
         <div><dt>Extra engines</dt><dd>FFmpeg, LibreOffice and pdf2docx are downloaded once, the first time a tool needs them, after you agree. Each is checked with SHA-256.</dd></div>
         <div><dt>Updates</dt><dd>The app never updates itself. Once a day it checks for a new version and shows a note. Only the version number is sent.</dd></div>
         <div><dt>Removing it</dt><dd>Windows Settings, Apps, MQKit, Uninstall. The Explorer menu goes with it.</dd></div>
