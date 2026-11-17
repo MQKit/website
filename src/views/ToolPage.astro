@@ -1,0 +1,229 @@
+---
+import Base from "../layouts/Base.astro";
+import DownloadButton from "../components/DownloadButton.astro";
+import Icon from "../components/Icon.astro";
+import { CATEGORIES, TOOLS, TOOL_ICONS, toolNum, toolUrl, type Tool } from "../data/tools";
+import { INSTALLER_SIZE } from "../site";
+
+interface Props {
+  tool: Tool;
+}
+const { tool } = Astro.props;
+const soon = tool.release === "soon";
+const cat = CATEGORIES.find((c) => c.id === tool.category)!;
+const byStatus = (a: Tool, b: Tool) => (a.release === "available" ? 0 : 1) - (b.release === "available" ? 0 : 1);
+const same = TOOLS.filter((x) => x.id !== tool.id && x.category === tool.category).sort(byStatus);
+const others = TOOLS.filter((x) => x.category !== tool.category && x.release === "available");
+const related = [...same, ...others].slice(0, 8);
+const title = soon ? `${tool.name.en} (coming soon)` : `${tool.name.en}, free and offline`;
+---
+<Base title={title} description={tool.description.en}>
+  <section class="page-head">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/tools/">Tools</a> / {cat.name.en}</nav>
+      <div class="title" style={`--c:${cat.color}`}>
+        <span class="tile"><Icon name={TOOL_ICONS[tool.id] ?? "apps"} size={30} /></span>
+        <h1>{tool.name.en}</h1>
+      </div>
+      <p class="meta">
+        <span class="mono" title="The tool's number in the app">ID:{toolNum(tool)}</span>
+        <span class="mono">{tool.formats}</span>
+        {soon ? <span class="status soon">coming soon</span> : <span class="status ok">in the app</span>}
+      </p>
+      <p class="lead">{tool.description.en}</p>
+      <div class="cta">
+        <DownloadButton large />
+        <span class="dim small">Windows 10 and 11 · {INSTALLER_SIZE} · free</span>
+      </div>
+      {soon && (
+        <p class="note">
+          This tool isn't in the app yet. It will come with an update; the app shows a short note when a new version is out.
+        </p>
+      )}
+    </div>
+  </section>
+
+  <section class="section body">
+    <div class="wrap cols">
+      <div>
+        <h2>{soon ? "What it will do" : "What it does"}</h2>
+        <ul class="list">
+          {tool.points.en.map((p) => <li>{p}</li>)}
+        </ul>
+      </div>
+      <div>
+        <h2>How to use it</h2>
+        <ol class="list steps">
+          <li>Install {` `}the app. No admin rights needed.</li>
+          <li>Drop your files on {tool.name.en}, or right-click them in Explorer.</li>
+          <li>Press the button. Results appear next to the originals.</li>
+        </ol>
+        <p class="dim small">Your files stay on your computer. Nothing is uploaded.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <h2>Other tools</h2>
+      <ul class="rel">
+        {related.map((t) => (
+          <li>
+            <a href={toolUrl(t, "en")}>{t.name.en}</a>
+            <span class="mono dim">{t.formats}</span>
+            {t.release === "soon" && <span class="status soon">soon</span>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 14px;
+  }
+  .title h1 {
+    margin: 0;
+  }
+  .tile {
+    flex: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    color: var(--c);
+    background: color-mix(in srgb, var(--c) 12%, var(--surface));
+  }
+  :global(:root[data-theme="dark"]) .tile {
+    color: color-mix(in srgb, var(--c) 65%, #fff);
+    background: color-mix(in srgb, var(--c) 22%, var(--surface));
+  }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme="light"])) .tile {
+      color: color-mix(in srgb, var(--c) 65%, #fff);
+      background: color-mix(in srgb, var(--c) 22%, var(--surface));
+    }
+  }
+  .crumbs {
+    font-size: 0.88rem;
+    color: var(--dim);
+    margin-bottom: 18px;
+  }
+  .crumbs a {
+    color: var(--muted);
+  }
+  .meta {
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin: 0 0 16px;
+    color: var(--muted);
+  }
+  .page-head .lead {
+    margin-bottom: 0;
+  }
+  .cta {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 26px;
+  }
+  .small {
+    font-size: 0.86rem;
+  }
+  .note {
+    margin: 22px 0 0;
+    max-width: 62ch;
+    padding-left: 14px;
+    border-left: 2px solid var(--soon);
+    color: var(--muted);
+  }
+  .body {
+    border-top: 0;
+    padding-top: 48px;
+  }
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+  }
+  .cols h2 {
+    font-size: 1.2rem;
+  }
+  .list {
+    margin: 0 0 16px;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+  .list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .steps {
+    counter-reset: step;
+  }
+  .steps li {
+    counter-increment: step;
+    display: flex;
+    gap: 12px;
+  }
+  .steps li::before {
+    content: counter(step);
+    font-family: var(--mono);
+    color: var(--dim);
+  }
+  .alt h2 {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+  }
+  .rel {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    column-gap: 32px;
+  }
+  .rel li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .rel a {
+    color: var(--text);
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .rel a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .rel .mono {
+    grid-column: 1;
+    font-size: 0.74rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .rel .status {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+  }
+  @media (max-width: 760px) {
+    .cols {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+  }
+</style>

@@ -1,0 +1,114 @@
+---
+import { APP_NAME, COMPANY, REPO, LATEST_VERSION } from "../site";
+import { AVAILABLE, toolUrl } from "../data/tools";
+
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap cols">
+    <div class="about">
+      <a class="brand" href="/"><img src="/icon.svg" alt="" width="22" height="22" />{APP_NAME}</a>
+      <p class="meaning"><b>M</b>orph · <b>Q</b>uick · <b>Kit</b></p>
+      <p>A kit of tools that quickly change your files into the form you need. Free, for Windows, works offline. Version <span class="mono">{LATEST_VERSION}</span>.</p>
+    </div>
+    <div>
+      <h4>Tools</h4>
+      {AVAILABLE.slice(0, 5).map((t) => <a href={toolUrl(t, "en")}>{t.name.en}</a>)}
+      <a href="/tools/">All tools</a>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/download/">Download</a>
+      <a href="/faq/">FAQ</a>
+      <a href={REPO}>Source code</a>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a href="/privacy/">Privacy</a>
+      <a href="/legal/">Legal notice</a>
+      <a href={COMPANY.site}>Software Hive</a>
+      <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+    </div>
+  </div>
+  <div class="wrap base">
+    <span>© {year} Software Hive S.R.L., Romania</span>
+    <span>Microsoft, Windows and Word are trademarks of Microsoft Corporation.</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--line);
+    background: var(--bg-alt);
+    padding: 48px 0 28px;
+    font-size: 0.9rem;
+  }
+  .cols {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 32px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+  .about .meaning {
+    margin: -4px 0 14px 30px;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    color: var(--muted);
+  }
+  .about .meaning b {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .brand img {
+    border-radius: 5px;
+  }
+  .about p {
+    color: var(--muted);
+    max-width: 32ch;
+    margin: 0;
+  }
+  h4 {
+    margin: 2px 0 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .cols > div:not(.about) {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .cols a:not(.brand) {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .cols a:not(.brand):hover {
+    color: var(--text);
+  }
+  .base {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px 24px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 0.82rem;
+    color: var(--dim);
+  }
+  @media (max-width: 760px) {
+    .cols {
+      grid-template-columns: 1fr 1fr;
+    }
+    .about {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

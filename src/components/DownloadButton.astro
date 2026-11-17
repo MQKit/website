@@ -1,0 +1,43 @@
+---
+import Icon from "./Icon.astro";
+import { DOWNLOAD, DOWNLOAD_READY, LATEST_VERSION } from "../site";
+
+interface Props {
+  small?: boolean;
+  large?: boolean;
+}
+const { small = false, large = false } = Astro.props;
+const cls = ["btn btn-primary", { "btn-sm": small, "btn-lg": large }];
+// Until the installer is published, the button leads to the download page, which says it's coming.
+const href = DOWNLOAD_READY ? DOWNLOAD : "/download/";
+---
+<a class:list={cls} href={href} data-windows-only={DOWNLOAD_READY ? "" : undefined} title={DOWNLOAD_READY ? undefined : "Coming soon"}>
+  {!small && <Icon name="windows" />}
+  {small ? "Download" : "Download for Windows"}
+  <span class="ver">v{LATEST_VERSION}</span>
+</a>
+
+<style>
+  .ver {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .btn-sm .ver {
+    font-size: 0.68rem;
+    padding: 0 5px;
+  }
+</style>
+<style is:global>
+  :root[data-theme="dark"] .btn-primary .ver {
+    background: rgba(0, 0, 0, 0.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .btn-primary .ver {
+      background: rgba(0, 0, 0, 0.14);
+    }
+  }
+</style>

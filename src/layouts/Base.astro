@@ -1,0 +1,61 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE, APP_NAME, LATEST_VERSION, REPO, COMPANY } from "../site";
+
+interface Props {
+  /** Short page title; the home page passes none. */
+  title?: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const fullTitle = title ? `${title} · ${APP_NAME}` : `${APP_NAME}: the free offline file converter for Windows`;
+const canonical = new URL(Astro.url.pathname, SITE).href;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: APP_NAME,
+  applicationCategory: "UtilitiesApplication",
+  operatingSystem: "Windows 10, Windows 11",
+  softwareVersion: LATEST_VERSION,
+  url: SITE,
+  codeRepository: REPO,
+  offers: { "@type": "Offer", price: 0, priceCurrency: "USD" },
+  publisher: { "@type": "Organization", name: "Software Hive S.R.L.", url: COMPANY.site },
+};
+// Before the first paint: the saved theme, else the system's.
+const headScript = `(function(){var d=document.documentElement;try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")d.setAttribute("data-theme",t)}catch(e){}})();`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icon-180.png" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111317" media="(prefers-color-scheme: dark)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={APP_NAME} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${SITE}/og.png`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="sitemap" href="/sitemap.xml" />
+    <script is:inline set:html={headScript} />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <Header />
+    <main id="main"><slot /></main>
+    <Footer />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+  </body>
+</html>

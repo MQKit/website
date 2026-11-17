@@ -1,0 +1,31 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHead from "../components/PageHead.astro";
+import { APP_NAME, COMPANY, SITE } from "../site";
+---
+<Base title="Privacy" description="What the app and the site keep about you: nothing, in practice.">
+  <PageHead
+    title="Privacy"
+    lead="In short: your files never leave your computer, the app has no account and doesn't track you, and this site uses no cookies."
+  />
+  <div class="wrap"><article class="prose">
+    <h2>The app</h2>
+    <ul>
+      <li>Every conversion happens on your computer. No file is sent anywhere.</li>
+      <li>Once a day, {APP_NAME} reads <code>{SITE}/latest.json</code> to learn whether a new version is out. The request carries only the version number. You can turn it off in Settings.</li>
+      <li>The first time you use a tool that needs a large program (FFmpeg, LibreOffice, Python with pdf2docx), the app downloads it from its official source (GitHub, The Document Foundation, python.org, PyPI), after you press the button. Those servers see your IP address, as with any download.</li>
+      <li>Settings, history and saved options stay on your computer only. PDF passwords are kept in memory only, while the tool is open.</li>
+    </ul>
+    <h2>This site</h2>
+    <ul>
+      <li>No cookies, no traffic statistics, nothing loaded from other sites. The fonts are hosted here.</li>
+      <li>The server keeps no access logs with IP addresses.</li>
+    </ul>
+    <h2>Who is responsible</h2>
+    <p>
+      {COMPANY.name}, {COMPANY.address}. For any question about personal data, write to
+      <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>. You have the rights the GDPR gives you (access, erasure, a complaint
+      to the data protection authority), although in practice we hold no data about you.
+    </p>
+  </article></div>
+</Base>

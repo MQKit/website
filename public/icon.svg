@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>MQKit</title>
+  <!-- A page, and the formats it turns into flowing out of it as ribbons. -->
+<defs>
+<linearGradient id="plate" x1="6" y1="2" x2="58" y2="62" gradientUnits="userSpaceOnUse">
+<stop offset="0" stop-color="#2d63d8"/>
+<stop offset=".5" stop-color="#1a3a97"/>
+<stop offset="1" stop-color="#0c1950"/>
+</linearGradient>
+<radialGradient id="glow" cx="14" cy="8" r="40" gradientUnits="userSpaceOnUse">
+<stop offset="0" stop-color="#9cc3ff" stop-opacity=".45"/>
+<stop offset="1" stop-color="#9cc3ff" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff"/>
+<stop offset="1" stop-color="#e6edfb"/>
+</linearGradient>
+<linearGradient id="fold" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#e9f0ff"/>
+<stop offset="1" stop-color="#a9bfea"/>
+</linearGradient>
+<filter id="sh" x="-30%" y="-30%" width="160%" height="160%">
+<feGaussianBlur stdDeviation="1.8"/>
+</filter>
+<clipPath id="tile">
+<rect x="2" y="2" width="60" height="60" rx="15"/>
+</clipPath>
+<linearGradient id="r1" x1="34" y1="0" x2="64" y2="0" gradientUnits="userSpaceOnUse">
+<stop offset="0" stop-color="#ffd2c2"/>
+<stop offset=".45" stop-color="#ff7a57"/>
+<stop offset="1" stop-color="#f2533a"/>
+</linearGradient>
+<linearGradient id="r2" x1="34" y1="0" x2="64" y2="0" gradientUnits="userSpaceOnUse">
+<stop offset="0" stop-color="#fff0c4"/>
+<stop offset=".45" stop-color="#ffc847"/>
+<stop offset="1" stop-color="#ffb21f"/>
+</linearGradient>
+<linearGradient id="r3" x1="34" y1="0" x2="64" y2="0" gradientUnits="userSpaceOnUse">
+<stop offset="0" stop-color="#c9f7e5"/>
+<stop offset=".45" stop-color="#37d69d"/>
+<stop offset="1" stop-color="#14b37e"/>
+</linearGradient>
+<linearGradient id="r4" x1="34" y1="0" x2="64" y2="0" gradientUnits="userSpaceOnUse">
+<stop offset="0" stop-color="#cdeeff"/>
+<stop offset=".45" stop-color="#46bfff"/>
+<stop offset="1" stop-color="#1f9cf0"/>
+</linearGradient>
+</defs>
+<rect x="2" y="2" width="60" height="60" rx="15" fill="url(#plate)"/>
+<g clip-path="url(#tile)">
+<path d="M33 26C44 26 48 4 64 3V16C52 17 46 31 33 31Z" fill="url(#r1)"/>
+<path d="M33 31.6C45 31.6 50 18 64 17V30C53 30.5 46 36.6 33 36.6Z" fill="url(#r2)"/>
+<path d="M33 37.2C46 37.2 52 31 64 31V44C52 44 46 42.2 33 42.2Z" fill="url(#r3)"/>
+<path d="M33 42.8C45 42.8 50 45 64 45V58C50 58 45 47.8 33 47.8Z" fill="url(#r4)"/>
+</g>
+<rect x="2" y="2" width="60" height="60" rx="15" fill="url(#glow)"/>
+<rect x="2.5" y="2.5" width="59" height="59" rx="14.5" fill="none" stroke="#fff" stroke-opacity=".14"/>
+<g transform="rotate(-7 24 33)">
+<path d="M14.5 13H29L37 21V49Q37 52.5 33.5 52.5H14.5Q11 52.5 11 49V16.5Q11 13 14.5 13Z" fill="#06123d" opacity=".45" filter="url(#sh)" transform="translate(1.2 2.2)"/>
+<path d="M14.5 13H29L37 21V49Q37 52.5 33.5 52.5H14.5Q11 52.5 11 49V16.5Q11 13 14.5 13Z" fill="url(#paper)"/>
+<path d="M29 13V18.5Q29 21 31.5 21H37Z" fill="url(#fold)"/>
+<rect x="16" y="27" width="13" height="2.8" rx="1.4" fill="#bccbec"/>
+<rect x="16" y="33" width="15.5" height="2.8" rx="1.4" fill="#bccbec"/>
+<rect x="16" y="39" width="10" height="2.8" rx="1.4" fill="#bccbec"/>
+</g>
+</svg>

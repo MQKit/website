@@ -1,0 +1,86 @@
+---
+// The voiced one-minute tour of the app (made by the app's scripts/tour/make.py), in a
+// player that only loads when asked for, with sound and controls, in the visitor's theme.
+// Anything marked .tour-open plays it (the homepage's poster).
+---
+<dialog class="tour" aria-label="A one-minute tour of MQKit">
+  <div class="frame">
+    <button class="close" type="button" aria-label="Close the tour">
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+    </button>
+    <video controls playsinline preload="none" width="1522" height="1062"></video>
+  </div>
+</dialog>
+
+<script>
+  const openers = document.querySelectorAll<HTMLElement>(".tour-open");
+  const dialog = document.querySelector<HTMLDialogElement>("dialog.tour")!;
+  const video = dialog.querySelector("video")!;
+  const darkOs = matchMedia("(prefers-color-scheme: dark)");
+  const theme = () => document.documentElement.dataset.theme ?? (darkOs.matches ? "dark" : "light");
+  let loaded = "";
+
+  const play = () => {
+    const t = theme();
+    if (loaded !== t) {
+      loaded = t;
+      video.poster = `/tour/tour-${t}.webp`;
+      video.innerHTML =
+        `<source src="/tour/tour-${t}.webm" type="video/webm"><source src="/tour/tour-${t}.mp4" type="video/mp4">`;
+      video.load();
+    }
+    dialog.showModal();
+    video.play().catch(() => {});
+  };
+  openers.forEach((o) => o.addEventListener("click", play));
+  const close = () => dialog.close();
+  dialog.querySelector(".close")!.addEventListener("click", close);
+  // A click outside the video closes it too.
+  dialog.addEventListener("click", (e) => {
+    if (e.target === dialog) close();
+  });
+  dialog.addEventListener("close", () => video.pause());
+</script>
+
+<style>
+  dialog.tour {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    max-width: min(1100px, 94vw);
+    width: 100%;
+    overflow: visible;
+  }
+  dialog.tour::backdrop {
+    background: rgba(8, 14, 28, 0.72);
+    backdrop-filter: blur(3px);
+  }
+  .frame {
+    position: relative;
+  }
+  video {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    background: #000;
+    box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+  }
+  .close {
+    position: absolute;
+    top: -44px;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 0;
+    display: grid;
+    place-items: center;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    cursor: pointer;
+  }
+  .close:hover {
+    background: rgba(255, 255, 255, 0.26);
+  }
+</style>

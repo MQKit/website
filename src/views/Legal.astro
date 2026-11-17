@@ -1,0 +1,23 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHead from "../components/PageHead.astro";
+import { APP_NAME, COMPANY } from "../site";
+---
+<Base title="Legal notice" description={`The company that publishes ${APP_NAME}.`}>
+  <PageHead title="Legal notice" lead={`${APP_NAME} and this website are published by the company below.`} />
+  <div class="wrap"><article class="prose">
+    <dl class="facts">
+      <div><dt>Company</dt><dd>{COMPANY.name}</dd></div>
+      <div><dt>Registered office</dt><dd>{COMPANY.address}</dd></div>
+      <div><dt>Trade Register number</dt><dd>{COMPANY.register}</dd></div>
+      <div><dt>EUID</dt><dd>{COMPANY.euid}</dd></div>
+      <div><dt>VAT and tax code</dt><dd>{COMPANY.vat}</dd></div>
+      <div><dt>Email</dt><dd><a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a></dd></div>
+      <div><dt>Web</dt><dd><a href={COMPANY.site}>softwarehive.ro</a></dd></div>
+    </dl>
+    <h2>What is offered</h2>
+    <p>{APP_NAME} is free, open source software (AGPL-3.0 license), complete without payment. This site sells nothing.</p>
+    <h2>Trademarks</h2>
+    <p>Microsoft, Windows, Word, Excel and PowerPoint are trademarks of Microsoft Corporation. iPhone is a trademark of Apple Inc. {APP_NAME} is not affiliated with these companies.</p>
+  </article></div>
+</Base>

@@ -1,0 +1,150 @@
+---
+// Every tool, grouped by kind, as a ruled list: name, formats, and "soon"
+// for the ones not out yet. Rows carry data-text and data-state for search.
+import Icon from "./Icon.astro";
+import { CATEGORIES, TOOLS, TOOL_ICONS, toolNum, toolUrl, type Tool } from "../data/tools";
+
+const haystack = (t: Tool) => [`id:${toolNum(t)} #${toolNum(t)}`, t.name.en, t.short.en, t.description.en, t.formats, ...t.points.en].join(" ").toLowerCase();
+const groups = CATEGORIES.map((c) => ({
+  name: c.name.en,
+  color: c.color,
+  tools: TOOLS.filter((t) => t.category === c.id).sort(
+    (a, b) => (a.release === "available" ? 0 : 1) - (b.release === "available" ? 0 : 1) || toolNum(a) - toolNum(b),
+  ),
+})).filter((g) => g.tools.length);
+---
+<div class="index">
+  {groups.map((g) => (
+    <section class="group" data-group style={`--c:${g.color}`}>
+      <h3>{g.name} <span class="mono dim">{g.tools.length}</span></h3>
+      <ul>
+        {g.tools.map((t) => (
+          <li data-text={haystack(t)} data-state={t.release}>
+            <a href={toolUrl(t, "en")} class:list={{ soon: t.release === "soon" }}>
+              <span class="ic"><Icon name={TOOL_ICONS[t.id] ?? "apps"} size={17} /></span>
+              <span class="name">{t.name.en} <span class="num">ID:{toolNum(t)}</span></span>
+              <span class="fmt">{t.formats}</span>
+              {t.release === "soon" && <span class="status soon">soon</span>}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</div>
+
+<style>
+  .num {
+    margin-left: 4px;
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .index {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 40px 36px;
+  }
+  .group[hidden],
+  li[hidden] {
+    display: none;
+  }
+  h3 {
+    padding-bottom: 10px;
+    margin: 0;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  h3::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    margin-right: 8px;
+    vertical-align: 2px;
+    background: var(--c);
+  }
+  h3 .mono {
+    font-weight: 400;
+    margin-left: 4px;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  a {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr) auto;
+    column-gap: 10px;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.94rem;
+  }
+  .ic {
+    grid-row: 1 / span 2;
+    width: 30px;
+    height: 30px;
+    border-radius: 7px;
+    display: grid;
+    place-items: center;
+    color: var(--c);
+    background: color-mix(in srgb, var(--c) 12%, var(--surface));
+  }
+  .soon .ic {
+    color: color-mix(in srgb, var(--c) 55%, var(--dim));
+    background: color-mix(in srgb, var(--c) 6%, var(--surface));
+  }
+  a:hover .name {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .name {
+    grid-column: 2;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  .soon .name {
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .fmt {
+    grid-column: 2;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--dim);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .status {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+  }
+  @media (max-width: 900px) {
+    .index {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 560px) {
+    .index {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+<style is:global>
+  :root[data-theme="dark"] .index .ic {
+    color: color-mix(in srgb, var(--c) 65%, #fff);
+    background: color-mix(in srgb, var(--c) 22%, var(--surface));
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .index .ic {
+      color: color-mix(in srgb, var(--c) 65%, #fff);
+      background: color-mix(in srgb, var(--c) 22%, var(--surface));
+    }
+  }
+</style>

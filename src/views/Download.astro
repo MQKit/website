@@ -1,0 +1,131 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHead from "../components/PageHead.astro";
+import DownloadButton from "../components/DownloadButton.astro";
+import Shot from "../components/Shot.astro";
+import { RELEASES } from "../data/changelog";
+import { DOWNLOAD_READY, APP_NAME, INSTALLER_NAME, INSTALLER_SHA256, INSTALLER_SIZE, LATEST_VERSION, LATEST_DATE, WINGET_ID } from "../site";
+---
+<Base title="Download" description={`Download ${APP_NAME} for Windows 10 and 11. Free, no account, works offline.`}>
+  <PageHead title={`Download ${APP_NAME}`} lead="Free, no account, no ads in the app. It installs in seconds, for your user only.">
+    <div class="cta">
+      <DownloadButton large />
+      {!DOWNLOAD_READY && <span class="soon-note">Version {LATEST_VERSION} is almost ready. The download appears here on release day.</span>}
+    </div>
+  </PageHead>
+
+  <div class="wrap">
+    <div class="backdrop shot-band">
+      <Shot name="home" alt={`${APP_NAME} on Windows`} />
+    </div>
+  </div>
+
+  <div class="wrap cols">
+    <div>
+      <h2>Installer</h2>
+      <dl class="facts">
+        <div><dt>Version</dt><dd class="mono">{LATEST_VERSION} · {LATEST_DATE}</dd></div>
+        <div><dt>File</dt><dd class="mono">{INSTALLER_NAME}</dd></div>
+        <div><dt>Size</dt><dd>{INSTALLER_SIZE}</dd></div>
+        <div><dt>Needs</dt><dd>Windows 10 or 11, 64-bit. No admin rights.</dd></div>
+        <div><dt>Signed by</dt><dd>Software Hive S.R.L.</dd></div>
+        <div><dt>SHA-256</dt><dd class="mono sha">{INSTALLER_SHA256 || "published with the release"}</dd></div>
+      </dl>
+
+      <h2>What's in version {RELEASES[0].version}</h2>
+      <p class="muted">{RELEASES[0].summary.en}</p>
+      <ul class="notes-list">{RELEASES[0].items.en.map((i) => <li>{i}</li>)}</ul>
+
+      <h2>With winget</h2>
+      <pre><code>winget install {WINGET_ID}</code></pre>
+    </div>
+
+    <div>
+      <h2>Good to know</h2>
+      <dl class="facts notes">
+        <div><dt>Where it goes</dt><dd><code class="code-inline">%LOCALAPPDATA%\MQKit</code>, for your user. System files are not touched.</dd></div>
+        <div><dt>Explorer menu</dt><dd>A MQKit submenu when you right-click files (on Windows 11, under Show more options). It can be turned off in Settings.</dd></div>
+        <div><dt>Extra engines</dt><dd>FFmpeg, LibreOffice and pdf2docx are downloaded once, the first time a tool needs them, after you agree. Each is checked with SHA-256.</dd></div>
+        <div><dt>Updates</dt><dd>The app never updates itself. Once a day it checks for a new version and shows a note. Only the version number is sent.</dd></div>
+        <div><dt>Removing it</dt><dd>Windows Settings, Apps, MQKit, Uninstall. The Explorer menu goes with it.</dd></div>
+      </dl>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .cta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  .soon-note {
+    color: var(--soon);
+    font-size: 0.9rem;
+  }
+  .shot-band {
+    margin-top: 40px;
+    padding: 40px 56px 0;
+    max-height: 420px;
+  }
+  .shot-band :global(.window) {
+    border-radius: 10px 10px 0 0;
+  }
+  @media (max-width: 600px) {
+    .shot-band {
+      padding: 16px 16px 0;
+    }
+  }
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    padding: 40px 0 88px;
+  }
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+  .facts + h2,
+  .notes-list + h2 {
+    margin-top: 36px;
+  }
+  .notes-list {
+    margin: 0;
+    padding-left: 18px;
+  }
+  .notes-list li {
+    margin-bottom: 6px;
+  }
+  .sha {
+    word-break: break-all;
+  }
+  .notes div {
+    grid-template-columns: 130px 1fr;
+  }
+  .notes dd {
+    color: var(--muted);
+  }
+  pre {
+    margin: 0;
+    padding: 12px 14px;
+    border-radius: var(--radius);
+    background: var(--code-bg);
+    overflow-x: auto;
+  }
+  @media (max-width: 820px) {
+    .cols {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+  @media (max-width: 480px) {
+    .notes div,
+    :global(dl.facts div) {
+      grid-template-columns: 1fr;
+      gap: 2px;
+    }
+  }
+</style>

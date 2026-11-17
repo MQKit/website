@@ -1,0 +1,80 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHead from "../components/PageHead.astro";
+import { FAQ_GROUPS } from "../data/faq";
+import { COMPANY } from "../site";
+---
+<Base title="FAQ" description="Short answers to the usual questions about the free, offline file converter for Windows.">
+  <PageHead title="Questions and answers" lead="Short answers to what people usually ask." />
+
+  <div class="wrap faq">
+    {FAQ_GROUPS.map((g) => (
+      <section class="group">
+        <h2>{g.title}</h2>
+        <div>{g.items.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}</div>
+      </section>
+    ))}
+
+    <section class="group">
+      <h2>Something else?</h2>
+      <div class="ask">
+        <p>Write to us and a person will answer, usually within a couple of days.</p>
+        <a class="btn" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .faq {
+    padding: 16px 0 88px;
+  }
+  .group {
+    display: grid;
+    grid-template-columns: minmax(0, 0.32fr) minmax(0, 1fr);
+    gap: 48px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .group:last-child {
+    border-bottom: 0;
+  }
+  h2 {
+    font-size: 1.3rem;
+    margin: 14px 0 0;
+  }
+  .group details:first-of-type {
+    border-top: 0;
+  }
+  .group details:last-of-type {
+    border-bottom: 0;
+  }
+  details p {
+    max-width: 72ch;
+  }
+  .ask {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px 24px;
+    border-radius: 12px;
+    background: var(--bg-alt);
+    border: 1px solid var(--line);
+  }
+  .ask p {
+    margin: 0;
+    color: var(--muted);
+  }
+  @media (max-width: 760px) {
+    .group {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 28px 0;
+    }
+    h2 {
+      margin: 0;
+    }
+  }
+</style>

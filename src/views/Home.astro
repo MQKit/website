@@ -1,0 +1,536 @@
+---
+import Base from "../layouts/Base.astro";
+import Icon from "../components/Icon.astro";
+import DownloadButton from "../components/DownloadButton.astro";
+import Shot from "../components/Shot.astro";
+import TourPlayer from "../components/TourPlayer.astro";
+import ToolIndex from "../components/ToolIndex.astro";
+import { TOOLS } from "../data/tools";
+import { FAQ } from "../data/faq";
+import { APP_NAME, INSTALLER_SIZE, LATEST_VERSION } from "../site";
+
+const description =
+  "Free Windows app: compress PDF, PDF to Word, merge PDF, HEIC to JPG, video to MP3 and more. Works offline: your files are never uploaded.";
+
+---
+<Base description={description}>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="copy">
+        <span class="label">Windows 10 and 11 · version {LATEST_VERSION} · free</span>
+        <h1>Convert and compress files on your own PC.</h1>
+        <p class="lead">
+          PDF to Word, smaller PDFs, iPhone photos to JPG, video to MP3, and more. Your files are never uploaded, so there is
+          no size limit, no queue and nothing to sign up for.
+        </p>
+        <div class="cta">
+          <DownloadButton large />
+          <a class="btn btn-lg" href="/tools/">See all {TOOLS.length} tools</a>
+        </div>
+      </div>
+
+      <!-- The tour's first frame: a click plays it (with sound) in the tour player. -->
+      <button class="poster tour-open" type="button" aria-label={`Play the one-minute tour of ${APP_NAME}`}>
+        <img class="shot-light" src="/tour/tour-light.webp" alt="" width="1522" height="1062" loading="eager" fetchpriority="high" />
+        <img class="shot-dark" src="/tour/tour-dark.webp" alt="" width="1522" height="1062" loading="lazy" />
+        <span class="play" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor" /></svg></span>
+        <span class="len" aria-hidden="true">1-minute tour · sound on</span>
+      </button>
+      <TourPlayer />
+    </div>
+  </section>
+
+  <section class="section after-hero">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Built for the files on your desk</h2>
+        <p>No website to upload to, no account, no watermark. The app does the work on your computer, and it's free.</p>
+      </div>
+      <div class="features">
+        <article class="feat">
+          <div class="ui ui-local" aria-hidden="true">
+            <div class="fileline">
+              <span class="ficon pdf"><Icon name="file-pdf" size={18} /></span>
+              <div><b>contract inchiriere.pdf</b><span class="mono">185.8 KB · This PC › Documents</span></div>
+            </div>
+            <div class="net">
+              <span><Icon name="globe" size={15} />Uploaded</span>
+              <b class="mono">0 bytes</b>
+            </div>
+          </div>
+          <h3>Nothing is uploaded</h3>
+          <p>Files are converted where they are. Contracts, IDs and family photos never pass through anyone's server.</p>
+        </article>
+
+        <article class="feat">
+          <div class="ui ui-menu" aria-hidden="true">
+            <div class="ctx">
+              <div><Icon name="files" size={15} />Open</div>
+              <div><Icon name="apps" size={15} />Open with</div>
+              <hr />
+              <div class="sel"><img src="/icon.svg" alt="" width="15" height="15" />MQKit<span>›</span></div>
+              <div><Icon name="sliders" size={15} />Properties</div>
+            </div>
+            <div class="sub">
+              <div class="on">Compress PDF</div>
+              <div>PDF to Word</div>
+              <div>Merge PDF</div>
+            </div>
+          </div>
+          <h3>Right-click in Explorer</h3>
+          <p>Select files, right-click, pick a tool. Results land next to the originals, which are never changed.</p>
+        </article>
+
+        <article class="feat">
+          <div class="ui ui-presets" aria-hidden="true">
+            <span class="cap">What do you need it for</span>
+            <div class="seg"><span class="on">For email</span><span>Balanced</span><span>Smallest</span><span>For print</span></div>
+            <div class="est"><span class="mono">3.5 MB → about 1 MB</span><span class="go">Compress 2 files</span></div>
+          </div>
+          <h3>Presets in plain words</h3>
+          <p>Pick what the file is for and the app sets the rest. You see the result size before you start.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="tools">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>{TOOLS.length} tools, all in one app</h2>
+        <p>Every one works on your PC, offline, and is free.</p>
+      </div>
+      <ToolIndex />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap detail">
+      <div class="backdrop detail-shot">
+        <Shot name="tool" alt="Compress PDF: presets, a size estimate and the files to compress" />
+      </div>
+      <div>
+        <h2>Every option, one click away</h2>
+        <p class="muted">Each tool opens with a preset that fits most people. The rest is explained without jargon.</p>
+        <ul class="ticks">
+          <li><Icon name="check" size={17} />Keep it under a size you choose: 10 MB, 2 MB, 500 KB</li>
+          <li><Icon name="check" size={17} />Compare before and after, at 100%</li>
+          <li><Icon name="check" size={17} />Hundreds of files at once, each with its own progress</li>
+          <li><Icon name="check" size={17} />Works without Microsoft Word, too</li>
+          <li><Icon name="check" size={17} />Light and dark, like your Windows</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap privacy">
+      <div>
+        <h2>What the app sends over the internet</h2>
+        <p class="muted">Almost nothing, and never your files. <a href="/privacy/">Privacy details</a></p>
+      </div>
+      <table class="sends">
+        <tbody>
+          <tr><th>Your files</th><td>Nothing. Every conversion runs on your PC.</td></tr>
+          <tr><th>Update check</th><td>Once a day, the version number only. You can turn it off.</td></tr>
+          <tr><th>Extra engines</th><td>FFmpeg, LibreOffice or pdf2docx come from their official sources the first time a tool needs one, after you click.</td></tr>
+          <tr><th>Tracking</th><td>None. No analytics in the app, no cookies on this site.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap qa">
+      <div>
+        <h2>Questions</h2>
+        <p class="muted"><a href="/faq/">All questions</a></p>
+      </div>
+      <div>
+        {FAQ.slice(0, 5).map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap closing-row">
+      <img src="/icon.svg" alt="" width="56" height="56" />
+      <div>
+        <h2>{APP_NAME} for Windows</h2>
+        <p class="muted">Windows 10 and 11 · {INSTALLER_SIZE} · no admin rights · free</p>
+      </div>
+      <DownloadButton large />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding: 72px 0 0;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 56px;
+    align-items: center;
+  }
+  .copy h1 {
+    max-width: 14ch;
+  }
+  .cta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+  .poster {
+    position: relative;
+    display: block;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface);
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05), 0 24px 48px -24px rgba(16, 24, 40, 0.35);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .poster img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .poster::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(8, 14, 28, 0.35), transparent 45%);
+    pointer-events: none;
+  }
+  .poster .play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 72px;
+    height: 72px;
+    margin: -36px 0 0 -36px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    padding-left: 4px;
+    background: #1f66d9;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(16, 40, 90, 0.45);
+    z-index: 1;
+    transition: transform 0.15s;
+  }
+  .poster .len {
+    position: absolute;
+    left: 14px;
+    bottom: 12px;
+    z-index: 1;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  .poster:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05), 0 30px 56px -24px rgba(16, 24, 40, 0.45);
+  }
+  .poster:hover .play {
+    transform: scale(1.08);
+  }
+  .after-hero {
+    border-top: 0;
+  }
+
+  /* Features */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .feat h3 {
+    margin: 20px 0 6px;
+    font-size: 1.05rem;
+  }
+  .feat p {
+    margin: 0;
+    color: var(--muted);
+  }
+  .ui {
+    height: 210px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    background: var(--bg-alt);
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+    font-size: 0.84rem;
+  }
+  .ui-local {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+  }
+  .fileline,
+  .net {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .fileline div {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .fileline b {
+    font-weight: 600;
+  }
+  .fileline .mono {
+    font-size: 0.72rem;
+    color: var(--dim);
+  }
+  .ficon {
+    width: 34px;
+    height: 34px;
+    flex: none;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+  }
+  .ficon.pdf {
+    color: #c2410c;
+    background: #fdeee6;
+  }
+  .net {
+    justify-content: space-between;
+  }
+  .net span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+  }
+  .net b {
+    color: var(--ok);
+    font-weight: 600;
+  }
+  .ui-menu {
+    padding: 18px;
+  }
+  .ctx,
+  .sub {
+    position: absolute;
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    padding: 4px;
+    box-shadow: 0 8px 24px -10px rgba(16, 24, 40, 0.3);
+  }
+  .ctx {
+    left: 18px;
+    top: 18px;
+    width: 58%;
+  }
+  .ctx div,
+  .sub div {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 6px 10px;
+    border-radius: 5px;
+    color: var(--text);
+  }
+  .ctx :global(svg) {
+    color: var(--dim);
+  }
+  .ctx hr {
+    border: 0;
+    border-top: 1px solid var(--line);
+    margin: 4px 0;
+  }
+  .ctx .sel,
+  .sub .on {
+    background: var(--accent-soft);
+  }
+  .ctx .sel span {
+    margin-left: auto;
+    color: var(--dim);
+  }
+  .sub {
+    left: 56%;
+    top: 92px;
+    width: 40%;
+  }
+  .ui-presets {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+  }
+  .cap {
+    font-size: 0.76rem;
+    color: var(--muted);
+  }
+  .seg {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .seg {
+    flex-wrap: nowrap;
+  }
+  .seg span {
+    padding: 4px 9px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
+    font-size: 0.74rem;
+    white-space: nowrap;
+  }
+  .seg .on {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .est {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+  .est .mono {
+    font-size: 0.76rem;
+  }
+  .go {
+    background: var(--accent);
+    color: #fff;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* Detail */
+  .detail {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+    gap: 56px;
+    align-items: center;
+  }
+  .detail-shot {
+    padding: 36px;
+  }
+  .ticks {
+    list-style: none;
+    padding: 0;
+    margin: 22px 0 0;
+    display: grid;
+    gap: 11px;
+  }
+  .ticks li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .ticks :global(svg) {
+    color: var(--ok);
+    flex: none;
+    margin-top: 4px;
+  }
+
+  /* Privacy */
+  .privacy {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 56px;
+    align-items: start;
+  }
+  .sends {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 1px solid var(--line-strong);
+  }
+  .sends th,
+  .sends td {
+    text-align: left;
+    vertical-align: top;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .sends th {
+    width: 150px;
+    padding-right: 20px;
+    font-weight: 600;
+  }
+  .sends td {
+    color: var(--muted);
+  }
+  .qa {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 56px;
+    align-items: start;
+  }
+
+  /* Closing */
+  .closing {
+    border-top: 1px solid var(--line);
+    padding: 56px 0;
+  }
+  .closing-row {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  .closing-row img {
+    filter: drop-shadow(0 8px 14px rgba(16, 60, 140, 0.35));
+  }
+  .closing-row > div {
+    flex: 1;
+    min-width: 220px;
+  }
+  .closing h2 {
+    margin-bottom: 2px;
+  }
+  .closing p {
+    margin: 0;
+  }
+
+  @media (max-width: 960px) {
+    .hero-grid,
+    .detail,
+    .qa,
+    .privacy {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+    .features {
+      grid-template-columns: 1fr;
+      max-width: 520px;
+    }
+  }
+  @media (max-width: 560px) {
+    .detail-shot {
+      padding: 16px;
+    }
+    .sends th {
+      width: 104px;
+      padding-right: 12px;
+    }
+  }
+</style>

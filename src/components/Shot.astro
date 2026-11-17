@@ -1,0 +1,13 @@
+---
+// An app screenshot in the visitor's theme: the light one, or the dark one in dark mode.
+interface Props {
+  name: string; // file stem in /screens/, with -light and -dark versions
+  alt: string;
+  class?: string;
+  eager?: boolean;
+}
+const { name, alt, class: cls, eager = false } = Astro.props;
+const loading = eager ? "eager" : "lazy";
+---
+<img class:list={["window", "shot-light", cls]} src={`/screens/${name}-light.webp`} alt={alt} width="1522" height="1063" loading={loading} />
+<img class:list={["window", "shot-dark", cls]} src={`/screens/${name}-dark.webp`} alt={alt} width="1522" height="1063" loading="lazy" />

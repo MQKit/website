@@ -1,0 +1,77 @@
+---
+import Base from "../layouts/Base.astro";
+import ToolIndex from "../components/ToolIndex.astro";
+import { TOOLS } from "../data/tools";
+import { COMPANY } from "../site";
+
+const description = `${TOOLS.length} tools for PDF, images, documents, video and audio, all in one free app that works offline.`;
+---
+<Base title="All tools" description={description}>
+  <section class="page-head">
+    <div class="wrap">
+      <h1>All tools</h1>
+      <p class="lead">{TOOLS.length} tools, all in the app, all free, all on your PC.</p>
+      <div class="bar">
+        <input id="q" type="search" placeholder="Search, e.g. compress, HEIC, MP3, scan" autocomplete="off" aria-label="Search tools" />
+      </div>
+    </div>
+  </section>
+
+  <section class="list-section">
+    <div class="wrap">
+      <ToolIndex />
+      <p class="empty" hidden>No tool matches. <a href={`mailto:${COMPANY.email}`}>Tell us what you need</a>.</p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const q = document.getElementById("q") as HTMLInputElement;
+  const rows = document.querySelectorAll<HTMLElement>("li[data-text]");
+  const groups = document.querySelectorAll<HTMLElement>("[data-group]");
+  const empty = document.querySelector<HTMLElement>(".empty")!;
+  function apply() {
+    const words = q.value.toLowerCase().split(/\s+/).filter(Boolean);
+    let any = false;
+    rows.forEach((row) => {
+      const ok = words.every((w) => row.dataset.text!.includes(w));
+      row.hidden = !ok;
+      any ||= ok;
+    });
+    groups.forEach((g) => (g.hidden = !g.querySelector("li:not([hidden])")));
+    empty.hidden = any;
+  }
+  q.addEventListener("input", apply);
+</script>
+
+<style>
+  .bar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  #q {
+    flex: 1 1 300px;
+    max-width: 440px;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    font-size: 0.94rem;
+  }
+  #q:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: -1px;
+  }
+  .list-section {
+    padding: 44px 0 88px;
+  }
+  .empty {
+    color: var(--muted);
+    padding: 24px 0;
+  }
+</style>
