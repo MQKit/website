@@ -12,6 +12,34 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "1.1.0",
+    date: "2026-11-18",
+    summary: {
+      en: "The app in 12 languages, natural voices for Text to speech, and safer handling of your files.",
+      ro: "Aplicația în 12 limbi, voci naturale la Text în voce și grijă mai mare pentru fișierele tale.",
+    },
+    items: {
+      en: [
+        "The app in English, Romanian, German, Spanish, French, Italian, Portuguese, Polish, Turkish, Russian, Japanese and Chinese",
+        "Text to speech: natural AI voices that run on your PC (English, Spanish, French, Italian, Portuguese, Hindi)",
+        "Type or paste text in Text to speech, Markdown to PDF and HTML to PDF",
+        "Originals are no longer deleted for good: on a drive without a Recycle Bin they stay where they are",
+        "Every file of a selection in Explorer arrives, and the right-click menu is removed completely on uninstall",
+        "Very large or damaged files get a clear message instead of stopping the tool",
+        "Clearer screens: what the start button needs, why a file was skipped, where the results went",
+      ],
+      ro: [
+        "Aplicația în engleză, română, germană, spaniolă, franceză, italiană, portugheză, poloneză, turcă, rusă, japoneză și chineză",
+        "Text în voce: voci AI naturale care rulează pe PC-ul tău (engleză, spaniolă, franceză, italiană, portugheză, hindi)",
+        "Scrii sau lipești text la Text în voce, Markdown în PDF și HTML în PDF",
+        "Originalele nu se mai șterg definitiv: pe o unitate fără Coș de reciclare rămân pe loc",
+        "Toate fișierele selectate în Explorer ajung în aplicație, iar meniul de click dreapta dispare complet la dezinstalare",
+        "Fișierele foarte mari sau stricate primesc un mesaj clar, în loc să oprească unealta",
+        "Ecrane mai clare: ce îi lipsește butonului de start, de ce s-a sărit un fișier, unde au ajuns rezultatele",
+      ],
+    },
+  },
+  {
     version: "1.0.0",
     date: "2026-11-18",
     summary: {

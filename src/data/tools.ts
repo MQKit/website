@@ -282,7 +282,7 @@ export const TOOLS: Tool[] = [
     name: t("Markdown and text", "Markdown și text"),
     short: t("To PDF, Word, HTML", "În PDF, Word, HTML"),
     description: t("Turn Markdown and text files into good-looking PDFs, Word documents, web pages or e-books.", "Transformă fișierele Markdown și text în PDF-uri arătoase, documente Word, pagini web sau cărți electronice."),
-    points: l(["Themes for PDF and HTML", "Table of contents", "Code highlighting"], ["Teme pentru PDF și HTML", "Cuprins", "Cod evidențiat"]),
+    points: l(["Themes for PDF and HTML", "Table of contents", "Code highlighting", "From a file, or text you paste"], ["Teme pentru PDF și HTML", "Cuprins", "Cod evidențiat", "Dintr-un fișier sau din text lipit"]),
     formats: "MD, TXT → PDF, DOCX, HTML, EPUB",
   },
   {
@@ -466,9 +466,9 @@ export const TOOLS: Tool[] = [
     slug: t("text-to-speech", "text-in-voce"),
     name: t("Text to speech", "Text în voce"),
     short: t("Listen to your texts", "Ascultă-ți textele"),
-    description: t("Turn texts and documents into natural-sounding audio, with voices that run on your computer.", "Transformă textele și documentele în audio cu voci naturale, care rulează pe calculatorul tău."),
-    points: l(["Every voice installed in Windows", "Four speeds", "MP3 or WAV"], ["Toate vocile instalate în Windows", "Patru viteze", "MP3 sau WAV"]),
-    formats: "TXT, DOCX → MP3, WAV",
+    description: t("Turn texts and documents, or text you type, into natural-sounding audio, with voices that run on your computer.", "Transformă textele și documentele, sau textul pe care îl scrii, în audio cu voci naturale, care rulează pe calculatorul tău."),
+    points: l(["Every voice installed in Windows", "Natural AI voices in English, Spanish, French, Italian, Portuguese and Hindi", "Type or paste text, or add files", "MP3 or WAV"], ["Toate vocile instalate în Windows", "Voci AI naturale în engleză, spaniolă, franceză, italiană, portugheză și hindi", "Scrii sau lipești text, ori adaugi fișiere", "MP3 sau WAV"]),
+    formats: "TXT, MD, DOCX → MP3, WAV",
   },
 ];
 
