@@ -12,6 +12,40 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "1.2.0",
+    date: "2026-11-18",
+    summary: {
+      en: "Nine new tools: fill and sign PDFs, QR codes with your logo, vocal remover, object eraser and more.",
+      ro: "Nouă unelte noi: completezi și semnezi PDF-uri, coduri QR cu logo, separare voce, ștergere obiecte și altele.",
+    },
+    items: {
+      en: [
+        "Fill and sign PDF: form fields, a signature drawn, typed or from a photo, text, ticks and dates on the page",
+        "Redact PDF: names, e-mails, phone numbers, IBANs and ID numbers removed from the file, not just covered",
+        "QR codes: rounded or dot styles, gradients, your logo in the middle, each code checked before it is saved",
+        "Erase objects from photos: paint over a passer-by or a wire and AI fills the place in, on your PC",
+        "Vocals and instrumental: karaoke tracks or vocals alone, with AI on your PC",
+        "Tempo and key: BPM, key and Camelot code for your songs, written as tags DJ programs read",
+        "Crop video for TikTok, Reels, Shorts and Instagram, with a blurred background if you want; speed and sound too",
+        "Voice recorder: record in the app, with noise reduction and an even volume",
+        "Animation from pictures (GIF, WebP, MP4) and smaller GIFs",
+        "Updates install over the older version without asking to uninstall it first",
+      ],
+      ro: [
+        "Completare și semnare PDF: câmpurile formularului, semnătură desenată, scrisă sau dintr-o poză, text, bife și date pe pagină",
+        "Acoperire date în PDF: nume, e-mailuri, telefoane, IBAN-uri și coduri numerice scoase din fișier, nu doar acoperite",
+        "Coduri QR: forme rotunjite sau puncte, degradeuri, logoul tău în mijloc, fiecare cod verificat înainte de salvare",
+        "Ștergere obiecte din poze: pictezi peste un trecător sau un fir și AI-ul umple locul, pe calculatorul tău",
+        "Voce și instrumental: negativ pentru karaoke sau doar vocea, cu AI pe calculatorul tău",
+        "Tempo și tonalitate: BPM, tonalitate și cod Camelot pentru melodii, scrise ca etichete pentru programele de DJ",
+        "Decupare video pentru TikTok, Reels, Shorts și Instagram, cu fundal estompat dacă vrei; și viteza, și sunetul",
+        "Înregistrare voce: înregistrezi în aplicație, cu reducerea zgomotului și volum egal",
+        "Animație din poze (GIF, WebP, MP4) și GIF-uri mai mici",
+        "Actualizările se instalează peste versiunea veche, fără să mai ceară dezinstalarea ei",
+      ],
+    },
+  },
+  {
     version: "1.1.0",
     date: "2026-11-18",
     summary: {

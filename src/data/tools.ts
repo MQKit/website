@@ -244,8 +244,8 @@ export const TOOLS: Tool[] = [
     slug: t("video-to-gif", "video-in-gif"),
     name: t("Video to GIF", "Video în GIF"),
     short: t("A clip that loops", "Un clip care se repetă"),
-    description: t("Turn a moment of a video into a GIF, or a GIF into a small MP4.", "Transformă un moment dintr-un video într-un GIF sau un GIF într-un MP4 mic."),
-    points: l(["Start and end you choose", "10, 15 or 24 frames per second", "GIF to MP4 too"], ["Început și sfârșit alese de tine", "10, 15 sau 24 de cadre pe secundă", "Și GIF în MP4"]),
+    description: t("Turn a moment of a video into a GIF, make a GIF smaller, or turn it into a small MP4.", "Transformă un moment dintr-un video într-un GIF, fă un GIF mai mic sau transformă-l într-un MP4 mic."),
+    points: l(["Start and end you choose", "10, 15 or 24 frames per second", "Smaller GIFs: fewer colors, frames or pixels", "GIF to MP4 too"], ["Început și sfârșit alese de tine", "10, 15 sau 24 de cadre pe secundă", "GIF-uri mai mici: mai puține culori, cadre sau pixeli", "Și GIF în MP4"]),
     formats: "MP4, MOV… ↔ GIF",
   },
   {
@@ -470,6 +470,88 @@ export const TOOLS: Tool[] = [
     points: l(["Every voice installed in Windows", "Natural AI voices in English, Spanish, French, Italian, Portuguese and Hindi", "Type or paste text, or add files", "MP3 or WAV"], ["Toate vocile instalate în Windows", "Voci AI naturale în engleză, spaniolă, franceză, italiană, portugheză și hindi", "Scrii sau lipești text, ori adaugi fișiere", "MP3 sau WAV"]),
     formats: "TXT, MD, DOCX → MP3, WAV",
   },
+  // ------------------------------------------------------------ 1.2
+  {
+    id: "qr-code", category: "image", release: "available",
+    slug: t("qr-code-generator", "generator-cod-qr"),
+    name: t("QR codes", "Coduri QR"),
+    short: t("Styled, with a logo", "Frumoase, cu logo"),
+    description: t("Make QR codes for links, text or contacts, styled your way, with your logo in the middle. Each code is read back before it is saved.", "Fă coduri QR pentru linkuri, text sau contacte, cum îți plac, cu logoul tău în mijloc. Fiecare cod e citit înainte să fie salvat."),
+    points: l(["Rounded, dot or classic shapes; gradients", "Your logo in the middle, text under the code", "One code or a code for each line of a list", "PNG, SVG for print, JPG"], ["Forme rotunjite, puncte sau clasice; degradeuri", "Logoul tău în mijloc, text sub cod", "Un cod sau câte un cod pentru fiecare rând dintr-o listă", "PNG, SVG pentru tipar, JPG"]),
+    formats: "TXT, CSV, VCF → PNG, SVG, JPG",
+  },
+  {
+    id: "pdf-edit", category: "pdf", release: "available",
+    slug: t("sign-pdf", "semnare-pdf"),
+    name: t("Fill and sign PDF", "Completare și semnare PDF"),
+    short: t("Text, signature, forms", "Text, semnătură, formulare"),
+    description: t("Fill in PDF forms, sign them and add text, pictures, ticks or today's date right on the page.", "Completează formulare PDF, semnează-le și adaugă text, imagini, bife sau data de azi direct pe pagină."),
+    points: l(["Form fields filled in, in any language", "Signature drawn, typed or from a photo, kept for next time", "Text, ticks, white-out and highlights", "Fields can be fixed into the page"], ["Câmpurile formularului completate, în orice limbă", "Semnătură desenată, scrisă sau dintr-o poză, păstrată pentru data viitoare", "Text, bife, acoperire cu alb și evidențieri", "Câmpurile se pot fixa în pagină"]),
+    formats: "PDF",
+  },
+  {
+    id: "pdf-redact", category: "pdf", release: "available",
+    slug: t("redact-pdf", "anonimizare-pdf"),
+    name: t("Redact PDF", "Acoperire date în PDF"),
+    short: t("Hide names and numbers for good", "Ascunde de tot nume și numere"),
+    description: t("Black out names, e-mails, phone numbers, IBANs and ID numbers. What is under the boxes is removed from the file, not just covered.", "Acoperă nume, e-mailuri, telefoane, IBAN-uri și coduri numerice. Ce e sub casete dispare din fișier, nu e doar acoperit."),
+    points: l(["Found by themselves: e-mails, phones, IBANs, cards, ID numbers", "Your own words, and boxes you draw", "Hidden data removed too: author, attachments, comments"], ["Găsite singure: e-mailuri, telefoane, IBAN-uri, carduri, coduri numerice", "Cuvintele tale și casete pe care le tragi", "Și datele ascunse dispar: autor, atașamente, comentarii"]),
+    formats: "PDF",
+  },
+  {
+    id: "photo-erase", category: "image", release: "available",
+    slug: t("remove-objects-from-photos", "stergere-obiecte-poze"),
+    name: t("Erase objects from photos", "Ștergere obiecte din poze"),
+    short: t("Paint over it, it's gone", "Pictezi peste, dispare"),
+    description: t("Remove a passer-by, a wire or a date stamp: paint over it and AI fills the place in, on your computer.", "Scoate un trecător, un fir sau data de pe poză: pictezi peste și AI-ul umple locul, pe calculatorul tău."),
+    points: l(["See the result before saving", "Only the painted part changes; the rest keeps every pixel", "Runs on your PC; nothing is uploaded"], ["Vezi rezultatul înainte să salvezi", "Se schimbă doar partea pictată; restul rămâne pixel cu pixel", "Rulează pe calculatorul tău; nu se încarcă nimic"]),
+    formats: "JPG, PNG, WebP, HEIC",
+  },
+  {
+    id: "images-to-gif", category: "image", release: "available",
+    slug: t("gif-maker", "gif-din-poze"),
+    name: t("Animation from pictures", "Animație din poze"),
+    short: t("GIF, WebP or MP4", "GIF, WebP sau MP4"),
+    description: t("Turn pictures into an animated GIF, an animated WebP or a short MP4 slideshow.", "Transformă pozele într-un GIF animat, un WebP animat sau o scurtă prezentare MP4."),
+    points: l(["Order you choose, time per picture", "Pictures of any shape, whole or filling the frame", "Forward and back"], ["Ordinea o alegi tu, timpul pentru fiecare poză", "Poze de orice formă, întregi sau umplând cadrul", "Înainte și înapoi"]),
+    formats: "JPG, PNG, WebP, HEIC → GIF, WebP, MP4",
+  },
+  {
+    id: "video-crop", category: "video", release: "available",
+    slug: t("crop-video", "decupare-video"),
+    name: t("Crop video for social media", "Decupare video pentru rețele"),
+    short: t("9:16, 1:1, 4:5, crop", "9:16, 1:1, 4:5, decupare"),
+    description: t("Fit videos to TikTok, Reels, Shorts or Instagram: cut to the shape, or the whole picture on a blurred background. Speed and sound too.", "Potrivește video-urile pentru TikTok, Reels, Shorts sau Instagram: tăiate la formă sau întregi, pe fundal estompat. Și viteza, și sunetul."),
+    points: l(["9:16, 1:1, 4:5, 16:9 or a free crop", "Blurred or colored bars instead of cutting", "Faster, slower, or without sound"], ["9:16, 1:1, 4:5, 16:9 sau decupare liberă", "Benzi estompate sau colorate în loc de tăiere", "Mai repede, mai încet sau fără sunet"]),
+    formats: "MP4, MOV, MKV, WEBM → MP4",
+  },
+  {
+    id: "voice-record", category: "audio", release: "available",
+    slug: t("voice-recorder", "inregistrare-voce"),
+    name: t("Voice recorder", "Înregistrare voce"),
+    short: t("Record and clean up the sound", "Înregistrează și curăță sunetul"),
+    description: t("Record your voice in the app, or bring recordings, and clean them up: background noise down, an even volume, silence cut.", "Înregistrează-ți vocea în aplicație sau adu înregistrări și curăță-le: zgomotul de fond scăzut, volum egal, liniștea tăiată."),
+    points: l(["Records from your microphone", "Noise reduction, light to strong", "MP3, M4A or WAV"], ["Înregistrează de la microfon", "Reducerea zgomotului, de la ușoară la puternică", "MP3, M4A sau WAV"]),
+    formats: "MP3, M4A, WAV, WEBM, OGG → MP3, M4A, WAV",
+  },
+  {
+    id: "music-split", category: "audio", release: "available",
+    slug: t("vocal-remover", "eliminare-voce"),
+    name: t("Vocals and instrumental", "Voce și instrumental"),
+    short: t("Split the voice from the music, with AI", "Separă vocea de muzică, cu AI"),
+    description: t("Separate a song's vocals from its music, for karaoke, practice or remixes, with AI that runs on your computer.", "Separă vocea unei melodii de muzică, pentru karaoke, exersat sau remixuri, cu AI care rulează pe calculatorul tău."),
+    points: l(["Karaoke track or vocals alone", "MP3, WAV or FLAC", "Runs on your PC; nothing is uploaded"], ["Negativ pentru karaoke sau doar vocea", "MP3, WAV sau FLAC", "Rulează pe calculatorul tău; nu se încarcă nimic"]),
+    formats: "MP3, M4A, WAV, FLAC, OGG",
+  },
+  {
+    id: "music-info", category: "audio", release: "available",
+    slug: t("bpm-key-finder", "bpm-tonalitate"),
+    name: t("Tempo and key", "Tempo și tonalitate"),
+    short: t("BPM, key, Camelot", "BPM, tonalitate, Camelot"),
+    description: t("See the tempo and key of your songs as soon as you add them, and write them into the files as tags DJ programs read.", "Vezi tempoul și tonalitatea melodiilor imediat ce le adaugi și scrie-le în fișiere ca etichete pe care le citesc programele de DJ."),
+    points: l(["BPM, key and Camelot code", "Tags in copies, or in the names", "Many songs at once"], ["BPM, tonalitate și cod Camelot", "Etichete în copii sau în nume", "Multe melodii deodată"]),
+    formats: "MP3, M4A, WAV, FLAC, OGG",
+  },
 ];
 
 export const AVAILABLE = TOOLS.filter((x) => x.release === "available");
@@ -497,6 +579,8 @@ export const TOOL_ICONS: Record<string, string> = {
   ocr: "ocr", "pdf-to-excel": "table", "pdf-to-powerpoint": "slides", "pdf-watermark": "stamp", svg: "vector",
   avif: "sparkles", raw: "camera", metadata: "eraser", archives: "archive", mail: "mail", subtitles: "subtitles", ebooks: "book",
   fonts: "font", "design-files": "layers", "cad-3d": "cube", tts: "speaker",
+  "qr-code": "qrcode", "pdf-edit": "signature", "pdf-redact": "eye-off", "photo-erase": "eraser", "images-to-gif": "gif",
+  "video-crop": "crop", "voice-record": "mic", "music-split": "music", "music-info": "metronome",
 };
 
 /**
@@ -516,6 +600,8 @@ const NUMBERS: Record<string, number> = {
   "audio-convert": 32, transcribe: 33, tts: 34,
   "office-to-pdf": 35, "html-to-pdf": 36, markdown: 37, tabular: 38, ebooks: 39, mail: 40,
   archives: 41, fonts: 42, metadata: 43, "cad-3d": 44,
+  "qr-code": 45, "pdf-edit": 46, "pdf-redact": 47, "photo-erase": 48, "images-to-gif": 49,
+  "video-crop": 50, "voice-record": 51, "music-split": 52, "music-info": 53,
 };
 
 /** The tool's number ("ID:12" in the app). */

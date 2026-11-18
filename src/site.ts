@@ -7,15 +7,15 @@ export const SITE = "https://mqkit.com";
 export const APP_NAME = "MQKit";
 export const REPO = "https://github.com/MQKit/app";
 
-export const LATEST_VERSION = "1.1.0";
+export const LATEST_VERSION = "1.2.0";
 /** Release date of LATEST_VERSION (yyyy-mm-dd). */
 export const LATEST_DATE = "2026-11-18";
 export const INSTALLER_NAME = `MQKit-setup-${LATEST_VERSION}.exe`;
 // by tag: the link names the exact file the SHA-256 is for
 export const DOWNLOAD = `${REPO}/releases/download/v${LATEST_VERSION}/${INSTALLER_NAME}`;
 /** From scripts\package.ps1 -Release; empty until the first release. */
-export const INSTALLER_SHA256 = "5984f917ab0e8cad08c86ded620f4f961e0ad1168f2a69cb059e70d4bd82d097";
-export const INSTALLER_SIZE = "14 MB";
+export const INSTALLER_SHA256 = "09a80c9f880e472833aa14be0a702b4556f9b553d0f2975a252a3feaa37fab54";
+export const INSTALLER_SIZE = "15 MB";
 /** Until the first release, the download buttons say "coming soon". */
 export const DOWNLOAD_READY = INSTALLER_SHA256 !== "";
 export const WINGET_ID = "SoftwareHive.MQKit";
